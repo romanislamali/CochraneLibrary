@@ -42,6 +42,30 @@ public class Urls_and_components {
 
 
     }
+    
+    public String MapDate(String component){
+        String[] temp_date = component.split(" ");
+        temp_date[1] = map.get(temp_date[1].toLowerCase());
+        return temp_date[2] + "-" + temp_date[1] + "-" + temp_date[0];
+    }
+    
+    public String GetPageUrl(Element page){
+        String page_url_comp = page.attr("href");
+        String page_url_slice = page_url_comp.substring(page_url_comp.indexOf(url_slicer));
+        return page_url_slice;
+    }
+    
+    public String GetUrl(Element element){
+        return library_url + element.select("a").attr("href").substring(5);
+    }
+    
+    public String GetResults(Element element ,String component){
+        return element.select(component).first().text();
+    }
+    public String author_component(){
+        return authors;
+    }
+    
 
     public String GetBaseUrl(){
         return baseUrl;
@@ -62,36 +86,16 @@ public class Urls_and_components {
         return topic.select("a").first().text();
     }
 
-    public String GetPageUrl(Element page){
-        String page_url_comp = page.attr("href");
-        String page_url_slice = page_url_comp.substring(page_url_comp.indexOf(url_slicer));
-        return page_url_slice;
-    }
-
 
     public String GetReviews(){
         return reviews_list;
     }
 
-    public String GetUrl(Element element){
-        return library_url + element.select("a").attr("href").substring(5);
-    }
-
-    public String GetResults(Element element ,String component){
-        return element.select(component).first().text();
-    }
-    public String author_component(){
-        return authors;
-    }
 
     public String Date(){
         return date;
     }
-    public String MapDate(String component){
-        String[] temp_date = component.split(" ");
-        temp_date[1] = map.get(temp_date[1].toLowerCase());
-        return temp_date[2] + "-" + temp_date[1] + "-" + temp_date[0];
-    }
+   
     
 
 }
